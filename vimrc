@@ -17,8 +17,6 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'wincent/Command-T'
-Bundle 'chriskempson/base16-vim'
-
 
 " ==========================================================
 " Shortcuts
@@ -87,8 +85,8 @@ set virtualedit=block " Let cursor move past the last char in <C-v> mode
 set scrolloff=3 " Keep 3 context lines above and below the cursor
 set backspace=2 " Allow backspacing over autoindent, EOL, and BOL
 set showmatch " Briefly jump to a paren once it's balanced
-"set wrap " Wrap text
-"set linebreak " don't wrap textin the middle of a word
+set wrap " Wrap text
+set linebreak " don't wrap textin the middle of a word
 set autoindent " always set autoindenting on
 set smartindent " use smart indent if there is no indent file
 set tabstop=4 " <tab> inserts 4 spaces
@@ -97,9 +95,9 @@ set softtabstop=4 " <BS> over an autoindent deletes all spaces.
 set expandtab " Use spaces, not tabs, for autoindent/tab key.
 set shiftround " rounds indent to a multiple of shiftwidth
 set formatoptions=tcroql " Setting text and comment formatting to auto
-"set textwidth=80 " lines are automatically wrapped after 80 columns
+set textwidth=80 " lines are automatically wrapped after 80 columns
 set nofoldenable " turn off folding
-"set colorcolumn=80 " highlight column 80 (where words will wrap)
+set colorcolumn=80 " highlight column 80 (where words will wrap)
 
 """" Reading/Writing
 set autowriteall " Don't bother me about changed buffers
@@ -140,6 +138,9 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 map <C-space> :bn <CR>
 map <C-M-space> :bp <CR>
 
+let g:solarized_termcolors=256
+colorscheme solarized
+set background=dark
 
 " Automatically add breakpoint for PDB
 nnoremap <leader>P Oimport pdb; pdb.set_trace(f &ft == "scala"
@@ -164,10 +165,3 @@ hi DiffText gui=underline guibg=red guifg=black
 " Preview Markdown files with QuickLook
 map <Leader>v :write<cr>:sil !/usr/bin/qlmanage -p % > /dev/null &<cr>:redraw!<cr>
 set guifont=Sauce\ Code\ Powerline:h14)
-
-
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
-
-set laststatus=2
-
-set t_Co=256
