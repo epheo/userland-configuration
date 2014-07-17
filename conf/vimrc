@@ -17,6 +17,7 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'wincent/Command-T'
+Plugin 'chriskempson/base16-vim'
 
 " ==========================================================
 " Shortcuts

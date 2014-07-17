@@ -21,8 +21,8 @@ def install_base():
     run('ln -s ~/.zprezto/runcoms/zshenv ~/.zshenv')
 
 def vim_plugin_install():
-    env.run('vim +PluginInstall +qall')
-    env.run('~/.vim/bundle/YouCompleteMe/install.sh')
+    run('vim +PluginInstall +qall')
+    #run('~/.vim/bundle/YouCompleteMe/install.sh')
 
 #def xx():
 #    echo 'if [ -d "$HOME/.local/bin" ]; then
@@ -40,3 +40,7 @@ def ln_c():
     put('conf/zshrc', '~/.zshrc')
     put('conf/zpreztorc', '~/.zpreztorc')
     put('conf/vimrc', '~/.vimrc')
+
+def refresh_c():
+    rm_c()
+    ln_c()
