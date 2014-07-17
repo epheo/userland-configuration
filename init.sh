@@ -5,6 +5,7 @@ sudo apt-get install zsh python-pip git tmux curl wget htop python-dev cmake fon
 
 ##  ZSH  ##
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 
 ##  POWERLINE  ##
 pip install --user git+git://github.com/Lokaltog/powerline
@@ -17,7 +18,9 @@ fi' >> ~/.profile
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 
 vim +PluginInstall +qall
-~/.vim/bundle/YouCompleteMe/install.sh
+cd ~/.vim/bundle/YouCompleteMe/ 
+git submodule update --init --recursive
+./install.sh
 
 ##Create config
 rm ~/.tmux.conf 

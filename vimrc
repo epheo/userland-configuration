@@ -72,6 +72,9 @@ set wildignore+=*.o,*.obj,.git,*.pyc
 set wildignore+=eggs/**
 set wildignore+=*.egg-info/**
 
+" Theme
+colorscheme base16-bright
+
 " Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
 
@@ -167,7 +170,5 @@ set guifont=Sauce\ Code\ Powerline:h14)
 
 
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
-
 set laststatus=2
-
 set t_Co=256
