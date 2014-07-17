@@ -1,7 +1,7 @@
 
 Personnal configuration for Vim Zsh and Tmux
 
-Requirements: Python Fabric
+Requirements: fabric, openssh-server
 
 fab localhost command
 
