@@ -15,14 +15,12 @@ def install_base():
     run('git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"')
     run('pip install --user git+git://github.com/Lokaltog/powerline')
     run('git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle')
+    run('vim +PluginInstall +qall')
+    run('cd ~/.vim/bundle/YouCompleteMe/ && git submodule update --init --recursive && install.sh')
     run('ln -s ~/.zprezto/runcoms/zlogout ~/.zlogout')
     run('ln -s ~/.zprezto/runcoms/zlogin ~/.zlogin')
     run('ln -s ~/.zprezto/runcoms/zprofile ~/.zprofile')
     run('ln -s ~/.zprezto/runcoms/zshenv ~/.zshenv')
-
-def vim_plugin_install():
-    run('vim +PluginInstall +qall')
-    #run('~/.vim/bundle/YouCompleteMe/install.sh')
 
 #def xx():
 #    echo 'if [ -d "$HOME/.local/bin" ]; then
