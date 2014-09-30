@@ -42,3 +42,7 @@ def ln_c():
 def refresh_c():
     rm_c()
     ln_c()
+
+def awesomewm_conf():
+    run('mkdir ~/.config/awesome/')
+    run('cp /etc/xdg/awesome/rc.lua ~/.config/awesome/rc.lua')
