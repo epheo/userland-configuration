@@ -11,7 +11,7 @@ def remote():
     env.hosts = ['some.remote.host']
 
 def install_base():
-    run('sudo apt-get install zsh python-pip git tmux curl wget htop python-dev cmake fontconfig')
+    run('sudo apt-get install zsh python-pip git tmux curl wget htop python-dev cmake fontconfig slock xscreensaver')
     run('git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"')
     run('pip install --user git+git://github.com/Lokaltog/powerline')
     run('git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle')
@@ -21,11 +21,6 @@ def install_base():
     run('ln -s ~/.zprezto/runcoms/zlogin ~/.zlogin')
     run('ln -s ~/.zprezto/runcoms/zprofile ~/.zprofile')
     run('ln -s ~/.zprezto/runcoms/zshenv ~/.zshenv')
-
-#def xx():
-#    echo 'if [ -d "$HOME/.local/bin" ]; then
-#            PATH="$HOME/.local/bin:$PATH"
-#          fi' >> ~/.profile
 
 def rm_c():
     run('rm ~/.tmux.conf')
@@ -45,4 +40,4 @@ def refresh_c():
 
 def awesomewm_conf():
     run('mkdir ~/.config/awesome/')
-    run('cp /etc/xdg/awesome/rc.lua ~/.config/awesome/rc.lua')
+    put('rc.lua', '~/.config/awesome/rc.lua')
