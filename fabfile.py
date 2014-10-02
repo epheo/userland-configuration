@@ -21,6 +21,7 @@ def install_pkg(pkgs):
         run('sudo apt-get install %s' % pkgs)
 
 
+
 def zsh():
     ## Install
     pkgs = 'zsh'
