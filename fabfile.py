@@ -9,7 +9,6 @@ def localhost():
     env.hosts = ['localhost']
 
 
-
 def install_base():
     pkgs = 'zsh python-pip git tmux curl wget htop python-dev cmake fontconfig slock xscreensaver'
     install_pkg(pkgs)
@@ -21,61 +20,64 @@ def install_pkg(pkgs):
     except SystemExit:
         run('sudo apt-get install %s' % pkgs)
 
+class zsh():
+    def install():
+        ## Install
+        pkgs = 'zsh'
+        install_pkg(pkgs)
+        run('chsh -s $(which zsh)')
 
-def zsh():
-    ## Install
-    pkgs = 'zsh'
-    install_pkg(pkgs)
-    run('chsh -s $(which zsh)')
+        run('git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"')
+        run('ln -s ~/.zprezto/runcoms/zlogout ~/.zlogout')
+        run('ln -s ~/.zprezto/runcoms/zlogin ~/.zlogin')
+        run('ln -s ~/.zprezto/runcoms/zprofile ~/.zprofile')
+        run('ln -s ~/.zprezto/runcoms/zshenv ~/.zshenv')
 
-    run('git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"')
-    run('ln -s ~/.zprezto/runcoms/zlogout ~/.zlogout')
-    run('ln -s ~/.zprezto/runcoms/zlogin ~/.zlogin')
-    run('ln -s ~/.zprezto/runcoms/zprofile ~/.zprofile')
-    run('ln -s ~/.zprezto/runcoms/zshenv ~/.zshenv')
+    def configure():
+        ## Conf
+        path = os.getcwd()
+        run('ln -s %s/conf/zshrc ~/.zshrc' % path)
+        run('ln -s %s/conf/zpreztorc ~/.zpreztorc' % path)
+    #    put('conf/zshrc', '~/.zshrc')
+    #    put('conf/zpreztorc', '~/.zpreztorc')
 
-    ## Conf
-    path = os.getcwd()
-    run('ln -s %s/conf/zshrc ~/.zshrc' % path)
-    run('ln -s %s/conf/zpreztorc ~/.zpreztorc' % path)
-#    put('conf/zshrc', '~/.zshrc')
-#    put('conf/zpreztorc', '~/.zpreztorc')
+class vim():
+    def install():
+        ## Install
+        pkgs = 'vim git cmake'
+        install_pkg(pkgs)
+        run('git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle')
+        run('vim +PluginInstall +qall')
+        run('sleep 10')
+        run('cd ~/.vim/bundle/YouCompleteMe/ && git submodule update --init --recursive && install.sh')
 
+    def configure():
+        ##  Conf
+        path = os.getcwd()
+        run('ln -s %s/conf/vimrc ~/.vimrc' % path)
+    #    put('conf/vimrc', '~/.vimrc')
 
-def vim():
-    ## Install
-    pkgs = 'vim git cmake'
-    install_pkg(pkgs)
-    run('git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle')
-    run('vim +PluginInstall +qall')
-    run(sleep 10)
-    run('cd ~/.vim/bundle/YouCompleteMe/ && git submodule update --init --recursive && install.sh')
+class tmux():
+    def install():
+        ## Install
+        pkgs = 'tmux'
+        install_pkg(pkgs)
 
-    ##  Conf
-    path = os.getcwd()
-    run('ln -s %s/conf/vimrc ~/.vimrc' % path)
-#    put('conf/vimrc', '~/.vimrc')
+    def configure():
+        ##  Conf
+        path = os.getcwd()
+        run('ln -s %s/conf/tmux.conf ~/.tmux.conf' % path)
+    #    put('conf/tmux.conf', '~/.tmux.conf')
 
-
-def tmux():
-    ## Install
-    pkgs = 'tmux'
-    install_pkg(pkgs)
-
-    ##  Conf
-    path = os.getcwd()
-    run('ln -s %s/conf/tmux.conf ~/.tmux.conf' % path)
-#    put('conf/tmux.conf', '~/.tmux.conf')
-
-
-def awesomewm_conf():
-    ## Install
-    pkgs = 'awesome vicious'
-    install_pkg(pkgs)
-
-    ## Conf
-    run('git clone https://github.com/Epheo/awesomewm-retina.git ~/.config/awesomewm-retina')
-    run('ln -s ~/.config/awesomewm-retina/awesome ~/.config/awesome')
+class awesome():
+    def install():
+        ## Install
+        pkgs = 'awesome vicious'
+        install_pkg(pkgs)
+    def configure():
+        ## Conf
+        run('git clone https://github.com/Epheo/awesomewm-retina.git ~/.config/awesomewm-retina')
+        run('ln -s ~/.config/awesomewm-retina/awesome ~/.config/awesome')
 
 def arch_mbp():
     run('sudo pacman -Sy packer')
@@ -103,4 +105,19 @@ def rm_c():
     run('rm ~/.vimrc ')
 
 if __name__ == '__main__':
-    zsh()
+    path = os.getcwd()
+    localhost()
+
+#    install_base(self)
+
+#    zsh.install(self)
+#    zsh.configure(self, path)
+
+#    vim.install(self)
+#    vim.configure(self, path)
+    
+    tmux.install()
+    tmux.configure(self, path)
+
+#    awesome.install(self)
+#    awesome.configure(self, path)
