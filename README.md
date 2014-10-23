@@ -10,4 +10,5 @@ fab localhost command
 install_base
 vim_plugin_install
 rm_c
+cp_c
 ln_c
