@@ -9,7 +9,6 @@ def localhost():
     env.hosts = ['localhost']
 
 
-
 def install_base():
     pkgs = 'zsh python-pip git tmux curl wget htop python-dev cmake fontconfig slock xscreensaver'
     install_pkg(pkgs)
@@ -20,6 +19,7 @@ def install_pkg(pkgs):
         run('sudo pacman -S %s' % pkgs)
     except SystemExit:
         run('sudo apt-get install %s' % pkgs)
+
 
 
 def zsh():
@@ -48,7 +48,7 @@ def vim():
     install_pkg(pkgs)
     run('git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle')
     run('vim +PluginInstall +qall')
-    run(sleep 10)
+    run('sleep 10')
     run('cd ~/.vim/bundle/YouCompleteMe/ && git submodule update --init --recursive && install.sh')
 
     ##  Conf
@@ -103,4 +103,9 @@ def rm_c():
     run('rm ~/.vimrc ')
 
 if __name__ == '__main__':
+    localhost()
     zsh()
+    vim()
+    tmux()
+    install_base()
+    awesome()
