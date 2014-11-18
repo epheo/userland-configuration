@@ -2,7 +2,7 @@ set nocompatible " be iMproved
 filetype off " required!
 
 set rtp+=~/.vim/bundle/vundle/
-set rtp+=~/tools/powerline/powerline/bindings/vim
+"set rtp+=~/tools/powerline/powerline/bindings/vim
 call vundle#rc()
 let g:vundle_default_git_proto='git'
 
@@ -10,14 +10,16 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tomasr/molokai'
 Bundle 'tpope/vim-repeat'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'kien/ctrlp.vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'sjl/gundo.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'wincent/Command-T'
+Bundle 'scrooloose/nerdtree'
 Plugin 'chriskempson/base16-vim'
+
 
 " ==========================================================
 " Shortcuts
@@ -44,9 +46,9 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 
 " and lets make these all work in insert mode too ( <C-O> makes next cmd
-" happen as if in command mode )
+"  happen as if in command mode )
 imap <C-W> <C-O><C-W>
-
+ 
 " Load the Gundo window
 map <leader>g :GundoToggle<CR>
 
@@ -56,7 +58,7 @@ map <leader>g :GundoToggle<CR>
 syntax on " syntax highlighing
 filetype on " try to detect filetypes
 filetype plugin indent on " enable loading indent file for filetype
-"set number " Display line numbers
+set number " Display line numbers
 set background=dark " We are using dark background in vim
 set title " show title in console title bar
 set wildmenu " Menu completion in command mode on <Tab>
@@ -91,12 +93,12 @@ set backspace=2 " Allow backspacing over autoindent, EOL, and BOL
 set showmatch " Briefly jump to a paren once it's balanced
 set wrap " Wrap text
 set linebreak " don't wrap textin the middle of a word
-"set autoindent " always set autoindenting on
+set autoindent " always set autoindenting on
 set smartindent " use smart indent if there is no indent file
 set tabstop=4 " <tab> inserts 4 spaces
 set shiftwidth=4 " And an indent level is 4 spaces wide.
 set softtabstop=4 " <BS> over an autoindent deletes all spaces.
-"set expandtab " Use spaces, not tabs, for autoindent/tab key.
+set expandtab " Use spaces, not tabs, for autoindent/tab key.
 set shiftround " rounds indent to a multiple of shiftwidth
 set formatoptions=tcroql " Setting text and comment formatting to auto
 set textwidth=80 " lines are automatically wrapped after 80 columns
@@ -173,3 +175,21 @@ set guifont=Sauce\ Code\ Powerline:h14)
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set laststatus=2
 set t_Co=256
+
+"======================="
+"      NerdTree         "
+"======================="
+
+" Open if nothing
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Mouse
+set mouse=a
+
+map <C-n> :NERDTreeToggle<CR>
+
+" Close if nothing
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+let NERDTreeDirArrows=0
