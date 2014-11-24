@@ -49,7 +49,7 @@ def vim():
     run('git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle')
     run('vim +PluginInstall +qall')
     run('sleep 10')
-    run('cd ~/.vim/bundle/YouCompleteMe/ && git submodule update --init --recursive && install.sh')
+    run('cd ~/.vim/bundle/YouCompleteMe/ && git submodule update --init --recursive && ./install.sh')
 
     ##  Conf
     path = os.getcwd()
